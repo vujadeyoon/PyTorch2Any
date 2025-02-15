@@ -1,3 +1,6 @@
 [submodule "vujade-python"]
 	path = vujade-python
 	url = https://github.com/vujadeyoon/vujade-python
+[submodule "lib/external/quic/qidk"]
+	path = lib/external/quic/qidk
+	url = https://github.com/quic/qidk

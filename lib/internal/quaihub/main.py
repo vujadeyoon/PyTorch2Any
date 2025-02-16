@@ -42,13 +42,11 @@ if __name__=='__main__':
     if args.model == 'distill_internvideo2_small_patch14_224':
         opset_version = 13
         batch, channel, depth, height, width = 1, 3, 8, 224, 224
-        dtype_input_video, dtype_input_mask = torch.float32, torch.float32
+        dtype_input_video, dtype_input_mask = torch.float32, torch.int32
         input_names = ('input_video', 'input_mask')
         output_names = ('outputs_0', 'outputs_1')
-        # options_compile = '--target_runtime tflite --truncate_64bit_tensors' # no-quantization
         options_compile = '--target_runtime onnx'
-        # options_quantization = '--target_runtime tflite --truncate_64bit_tensors --quantize_io'
-        options_quantization = '--target_runtime tflite --quantize_io'
+        options_quantization = '--target_runtime tflite --truncate_64bit_tensors --quantize_io --quantize_io_type int8'
 
         input_video = torch.rand((batch, channel, depth, height, width), dtype=dtype_input_video)
         input_mask = torch.cat([
